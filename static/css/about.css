@@ -1,0 +1,89 @@
+/* <!-- About CSS --> */
+
+ :root {
+   --primary-green: #2c8a54;
+   --accent-yellow: #ffc107;
+   --dark-blue: #0d3b66;
+ }
+ 
+ .btn-solar {
+   background-color: var(--primary-green);
+   border-color: var(--primary-green);
+   color: white;
+   font-weight: 600;
+   transition: all 0.3s ease;
+ }
+ 
+ .btn-solar:hover {
+   background-color: #236b43;
+   color: white;
+   transform: translateY(-2px);
+   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+ }
+ 
+ .feature-icon {
+   color: var(--accent-yellow);
+   font-size: 1.5rem;
+ }
+
+ .bg-solar-dark {
+   background-color: #13232f;
+ }
+
+ .text-solar-accent {
+   color: var(--accent-yellow);
+ }
+
+ .hero-section {
+   position: relative;
+   padding: 7rem 0;
+ }
+
+ .hero-overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: linear-gradient(135deg, rgba(13, 59, 102, 0.9), rgba(44, 138, 84, 0.8));
+   z-index: 1;
+ }
+
+ .hero-content {
+   position: relative;
+   z-index: 2;
+ }
+
+ .curved-section-top {
+   border-top-left-radius: 50px;
+   border-top-right-radius: 50px;
+   margin-top: -50px;
+   padding-top: 80px;
+   background-color: white;
+   position: relative;
+   z-index: 3;
+ }
+
+ .stat-box {
+   border-radius: 16px;
+   padding: 2rem;
+   text-align: center;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+   transition: all 0.3s ease;
+ }
+ 
+ .stat-box:hover {
+   transform: translateY(-5px);
+   box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+ }
+ 
+ .testimonial-card {
+   border-radius: 16px;
+   overflow: hidden;
+   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+ }
+ 
+ .cta-section {
+   background: linear-gradient(135deg, var(--dark-blue), var(--primary-green));
+   border-radius: 16px;
+ }

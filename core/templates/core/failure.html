@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REANRecycling - Solar Solutions</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #00a2ff;
+            --secondary-color: #0056b3;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('solar-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+
+        .features-section {
+            padding: 50px 0;
+            background-color: #f8f9fa;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .nav-link {
+            color: white !important;
+            margin: 0 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+
+
+{% comment %}  {% endcomment %}
+
+<style>
+    /* Base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+    }
+    
+    body {
+        line-height: 1.6;
+        color: #333;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        background-color: #f8f9fa;
+        padding: 80px 0;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        color: #1a1a1a;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto 30px;
+        color: #555;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+        background-color: #45a049;
+    }
+    
+    /* Articles Section */
+    .articles {
+        padding: 60px 0;
+    }
+    
+    .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+    
+    .article-card {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    
+    .article-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .article-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    .article-content {
+        padding: 20px;
+    }
+    
+    .article-content h3 {
+        margin-bottom: 10px;
+    }
+    
+    .article-content p {
+        margin-bottom: 15px;
+        color: #666;
+    }
+    
+    .read-more {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    .read-more:hover {
+        text-decoration: underline;
+    }
+    
+    /* FAQ Section */
+    .faq {
+        background-color: #f5f5f5;
+        padding: 60px 0;
+    }
+    
+    .faq h2 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .faq-item {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .faq-question {
+        padding: 15px 20px;
+        background-color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .faq-question::after {
+        content: '+';
+        font-size: 1.5rem;
+    }
+    
+    .faq-question.active::after {
+        content: '-';
+    }
+    
+    .faq-answer {
+        padding: 0 20px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #fff;
+    }
+    
+    .faq-answer.active {
+        max-height: 500px;
+        padding: 15px 20px;
+    }
+    
+    /* About Section */
+    .about {
+        padding: 60px 0;
+    }
+    
+    .about h2 {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .about-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+    
+    .about-card {
+        padding: 30px;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    
+    .about-card h3 {
+        margin-bottom: 15px;
+        color: #4CAF50;
+    }
+    
+    /* Footer */
+    .footer {
+        background-color: #333;
+        color: white;
+        padding: 60px 0 0 0;
+    }
+    
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .footer-section h3 {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+    }
+    
+    .social-links a {
+        display: inline-block;
+        height: 40px;
+        width: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin: 0 10px 10px 0;
+        text-align: center;
+        line-height: 40px;
+        border-radius: 50%;
+        color: white;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+    
+    .social-links a:hover {
+        background-color: #4CAF50;
+    }
+    
+    .contact-info p {
+        margin-bottom: 10px;
+    }
+    
+    .map-container {
+        height: 300px;
+        margin-bottom: 40px;
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    .copyright {
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+    }
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="REANRecycling Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#solutions">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#payment">Payment</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 mb-4">Sustainable Solar Solutions for Every Need</h1>
+            <p class="lead mb-5">Harness the power of the sun with REANRecycling's high-quality solar panels</p>
+            <a href="#contact" class="btn btn-primary btn-lg">Get Started</a>
+            
+            
+        </div>
+    </header>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="features-section">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Solar Solutions</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Residential</h4>
+                            <p>Seamless rooftop installations designed for home energy independence</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Commercial</h4>
+                            <p>Scalable solutions to reduce operational costs and carbon footprint</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Industrial</h4>
+                            <p>Customizable power solutions for large-scale energy requirements</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Secure Payment Options</h2>
+            <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#paymentModal">
+                Pay Now
+            </button>
+        </div>
+
+        <!-- Payment Modal -->
+         <!-- Add this to your existing HTML, inside the body tag -->
+        <div class="modal fade" id="paymentModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Complete Your Payment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="paystackPaymentForm">
+                            <!-- CSRF Token for Django -->
+                            {% csrf_token %}
+                            
+                            <div class="mb-3">
+                                <label for="paymentAmount" class="form-label">Payment Amount (NGN)</label>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="paymentAmount" 
+                                    placeholder="Enter amount" 
+                                    min="100" 
+                                    step="0.01" 
+                                    required
+                                >
+                            </div>
+                        
+                        <div class="mb-3">
+                            <label for="paymentEmail" class="form-label">Email Address</label>
+                            <input 
+                                type="email" 
+                                class="form-control" 
+                                id="paymentEmail" 
+                                placeholder="Enter your email" 
+                                required
+                            >
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100">
+                            Proceed to Payment
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+
+     <!-- About Section -->
+     <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Our Mission</h3>
+                    <p>Our mission is to empower businesses with innovative solutions that drive growth and success. We are committed to providing exceptional value and supporting our clients every step of the way.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Our Vision</h3>
+                    <p>We envision a world where businesses of all sizes can access powerful tools and resources to achieve their goals. Our platform is designed to make this vision a reality.</p>
+                </div>
+                <div class="about-card">
+                    <h3>Benefits</h3>
+                    <p>Working with us provides numerous benefits, including increased efficiency, reduced costs, improved customer satisfaction, and access to cutting-edge technology and expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+     <!-- Footer -->
+     <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>We are a dedicated team committed to delivering exceptional solutions that meet the unique needs of our clients.</p>
+                    <p><a href="about.html" style="color: #4CAF50; text-decoration: none;">Read more about us</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f">f</i></a>
+                        <a href="#"><i class="fab fa-twitter">t</i></a>
+                        <a href="#"><i class="fab fa-instagram">i</i></a>
+                        <a href="#"><i class="fab fa-linkedin-in">in</i></a>
+                    </div>
+                </div>
+                <div class="footer-section contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Tech City, CA 90210</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@yourcompany.com</p>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.27405770525!2d-118.69192047471653!3d34.02016130653093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1585293060799!5m2!1sen!2s" allowfullscreen></iframe>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Your Company. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

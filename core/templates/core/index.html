@@ -1,0 +1,241 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <!-- Hero Section -->
+  <header id="home" class="hero-section text-center">
+    <div class="container">
+      <h1 class="display-4 mb-4">Sustainable Solar Solutions for Every Need</h1>
+      <p class="lead mb-5">Harness the power of the sun with REANRecycling's high-quality solar panels</p>
+      <a href="#contact" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+  </header>
+
+  <!-- Services Section -->
+  <section id="services" class="features-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Services</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4 ">
+          <div class="card card-hover h-100">
+            <img src="{% static 'img/solar-article.webp' %}" alt="Article Image 1" class="article-img" />
+            <div class="card-body text-center">
+              <h4 class="card-title">Residential</h4>
+              <p>Seamless rooftop installations designed for home energy independence</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card card-hover h-100">
+            <img src="{% static 'img/control.jpeg' %}" alt="Article Image 1" class="article-img" />
+
+            <div class="card-body text-center">
+              <h4 class="card-title">Commercial</h4>
+              <p>Scalable solutions to reduce operational costs and carbon footprint</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4 ">
+          <div class="card card-hover h-100">
+            <img src="{% static 'img/yellow-helmet.jpg' %}" alt="Article Image 1" class="article-img" />
+            <div class="card-body text-center">
+              <h4 class="card-title">Industrial</h4>
+              <p>Customizable power solutions for large-scale energy requirements</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Contact Us</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form method="POST" id="contactForm">
+            {% csrf_token %} <!-- CSRF Token for Django -->
+            <div class="mb-3">
+              <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required />
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required />
+            </div>
+            <div class="mb-3">
+              <input type="phone" class="form-control" name="phone" id="phone" placeholder="Phone" required />
+            </div>
+            <div class="mb-3">
+              <textarea class="form-control" name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Section -->
+  <section id="payment" class="py-5">
+    <div class="container text-center">
+      <h2 class="mb-4">Secure Payment Options</h2>
+      <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#paymentModal">Pay Now</button>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Complete Your Payment</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="paystackPaymentForm">
+              <!-- CSRF Token for Django -->
+              {% csrf_token %}
+
+              <div class="mb-3">
+                <label for="paymentAmount" class="form-label">Payment Amount (NGN)</label>
+                <input type="number" class="form-control" id="paymentAmount" placeholder="Enter amount" min="100" step="0.01" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="paymentEmail" class="form-label">Email Address</label>
+                <input type="email" class="form-control" id="paymentEmail" placeholder="Enter your email" required />
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">Proceed to Payment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section class="articles">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">Latest Articles</h2>
+      <div class="articles-grid">
+        <div class="article-card">
+          <img src="{% static 'img/solar-article.webp' %}" alt="Article Image 1" class="article-img" />
+          <div class="article-content">
+            <h3>How Our Platform Can Transform Your Business</h3>
+            <p>Discover the innovative ways our platform can help you grow your business and reach new heights.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </div>
+        
+        <div class="article-card">
+          <img src="{% static 'img/solar-article2.webp' %}" alt="Article Image 2" class="article-img" />
+          <div class="article-content">
+            <h3>Success Stories from Our Clients</h3>
+            <p>Learn how our clients have achieved remarkable results using our platform and services.</p>
+            <a href="#" class="read-more">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">What services do you offer?</div>
+        <div class="faq-answer">
+          <p>We offer a comprehensive range of services tailored to meet your specific needs, including consultations, implementation strategies, ongoing support, and customized solutions for businesses of all sizes.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How much does it cost?</div>
+        <div class="faq-answer">
+          <p>Our pricing varies based on your requirements. We offer flexible plans starting from $99/month with options to scale as your needs grow. Contact us for a personalized quote.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is there a free trial available?</div>
+        <div class="faq-answer">
+          <p>Yes, we offer a 14-day free trial with full access to all features so you can experience the value of our platform before making a commitment.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How do I get started?</div>
+        <div class="faq-answer">
+          <p>Getting started is easy! Simply sign up on our website, and our onboarding team will guide you through the process. You'll be up and running in no time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Our Mission</h3>
+          <p>Our mission is to empower businesses with innovative solutions that drive growth and success. We are committed to providing exceptional value and supporting our clients every step of the way.</p>
+        </div>
+        <div class="about-card">
+          <h3>Our Vision</h3>
+          <p>We envision a world where businesses of all sizes can access powerful tools and resources to achieve their goals. Our platform is designed to make this vision a reality.</p>
+        </div>
+        <div class="about-card">
+          <h3>Benefits</h3>
+          <p>Working with us provides numerous benefits, including increased efficiency, reduced costs, improved customer satisfaction, and access to cutting-edge technology and expertise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>About Us</h3>
+          <p>We are a dedicated team committed to delivering exceptional solutions that meet the unique needs of our clients.</p>
+          <p>
+            <a href="{% url "about" %}" style="color: #4CAF50; text-decoration: none;">Read more about us</a>
+          </p>
+        </div>
+        <div class="footer-section">
+          <h3>Connect With Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-section contact-info">
+          <h3>Contact Information</h3>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Tech City, CA 90210
+          </p>
+          <p>
+            <i class="fas fa-phone"></i> (555) 123-4567
+          </p>
+          <p>
+            <i class="fas fa-envelope"></i> info@yourcompany.com
+          </p>
+        </div>
+      </div>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423286.27405770525!2d-118.69192047471653!3d34.02016130653093!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1585293060799!5m2!1sen!2s" allowfullscreen></iframe>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025 REANRecycling. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+{% endblock %}

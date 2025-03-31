@@ -37,6 +37,58 @@
 //     }
 
 
+// Contact Form Submission (using fetch API)
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = {};
+
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    fetch('/api/general/', { // Correct URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(jsonData),
+    })
+    .then(response => response.json()) // Parse JSON response
+    .then(data => {
+        if (data.status === 'Message sent successfully') {
+            alert(data.status);
+            document.getElementById('contactForm').reset();
+        } else if (data.status === 'error'){
+            alert("Error: " + JSON.stringify(data.errors));
+        } else {
+            alert("An unknown error occurred.");
+        }
+    })
+    .catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+        alert('An error occurred. Please try again.');
+    });
+});
 
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -151,44 +203,44 @@
 
       
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    const formResponse = document.getElementById('formResponse');
+//   document.addEventListener('DOMContentLoaded', function() {
+//     const contactForm = document.getElementById('contactForm');
+//     const formResponse = document.getElementById('formResponse');
     
-    contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
+//     contactForm.addEventListener('submit', function(e) {
+//       e.preventDefault();
       
-      const formData = new FormData(contactForm);
+//       const formData = new FormData(contactForm);
       
-      fetch('http://localhost:8000/api/general/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.status === 'success') {
-          formResponse.innerHTML = '<div class="alert alert-success">Your message has been sent successfully!</div>';
-          contactForm.reset();
-        } else {
-          let errorMessage = '<div class="alert alert-danger"><ul>';
-          for (const [field, errors] of Object.entries(data.errors)) {
-            errors.forEach(error => {
-              errorMessage += `<li>${field}: ${error}</li>`;
-            });
-          }
-          errorMessage += '</ul></div>';
-          formResponse.innerHTML = errorMessage;
-        }
-      })
-      .catch(error => {
-        formResponse.innerHTML = '<div class="alert alert-danger">Something went wrong. Please try again later.</div>';
-        console.error('Error:', error);
-      });
-    });
-  });
+//       fetch('http://localhost:8000/api/general/', {
+//         method: 'POST',
+//         body: formData,
+//         headers: {
+//           'X-Requested-With': 'XMLHttpRequest',
+//         }
+//       })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.status === 'success') {
+//           formResponse.innerHTML = '<div class="alert alert-success">Your message has been sent successfully!</div>';
+//           contactForm.reset();
+//         } else {
+//           let errorMessage = '<div class="alert alert-danger"><ul>';
+//           for (const [field, errors] of Object.entries(data.errors)) {
+//             errors.forEach(error => {
+//               errorMessage += `<li>${field}: ${error}</li>`;
+//             });
+//           }
+//           errorMessage += '</ul></div>';
+//           formResponse.innerHTML = errorMessage;
+//         }
+//       })
+//       .catch(error => {
+//         formResponse.innerHTML = '<div class="alert alert-danger">Something went wrong. Please try again later.</div>';
+//         console.error('Error:', error);
+//       });
+//     });
+//   });
 
 
 
@@ -425,56 +477,111 @@
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  const contactForm = document.querySelector("#contact-form");
+// document.addEventListener("DOMContentLoaded", function () {
+//   const contactForm = document.querySelector("#contact-form");
 
-  contactForm.addEventListener("submit", function (event) {
-      event.preventDefault();
+//   contactForm.addEventListener("submit", function (event) {
+//       event.preventDefault();
 
-      // Collect form data
-      const formData = {
-          name: document.getElementById("name").value.trim(),
-          email: document.getElementById("email").value.trim(),
-          phone: document.getElementById("phone").value.trim(),
-          property: document.getElementById("property").value.trim(),
-          message: document.getElementById("message").value.trim(),
-      };
+//       // Collect form data
+//       const formData = {
+//           name: document.getElementById("name").value.trim(),
+//           email: document.getElementById("email").value.trim(),
+//           phone: document.getElementById("phone").value.trim(),
+//           property: document.getElementById("property").value.trim(),
+//           message: document.getElementById("message").value.trim(),
+//       };
 
-      // Get CSRF Token from cookies
-      function getCSRFToken() {
-          let cookieValue = null;
-          const cookies = document.cookie.split(";");
-          for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].trim();
-              if (cookie.startsWith("csrftoken=")) {
-                  cookieValue = cookie.substring("csrftoken=".length, cookie.length);
-                  break;
-              }
-          }
-          return cookieValue;
-      }
+//       // Get CSRF Token from cookies
+//       function getCSRFToken() {
+//           let cookieValue = null;
+//           const cookies = document.cookie.split(";");
+//           for (let i = 0; i < cookies.length; i++) {
+//               const cookie = cookies[i].trim();
+//               if (cookie.startsWith("csrftoken=")) {
+//                   cookieValue = cookie.substring("csrftoken=".length, cookie.length);
+//                   break;
+//               }
+//           }
+//           return cookieValue;
+//       }
 
-      fetch("http://127.0.0.1:8000/api/business/contact/", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": getCSRFToken(),  // ✅ Include CSRF token
-          },
-          body: JSON.stringify(formData),
-      })
-          .then((response) => response.json())
-          .then((data) => {
-              console.log("Response:", data);
-              if (data.success) {
-                  alert("Message sent successfully!");
-                  contactForm.reset();
-              } else {
-                  alert("Error: " + data.error);
-              }
-          })
-          .catch((error) => {
-              console.error("Error:", error);
-              alert("An error occurred. Please try again.");
-          });
-  });
+//       fetch("/api/business/contact/", {
+//           method: "POST",
+//           headers: {
+//               "Content-Type": "application/json",
+//               "X-CSRFToken": getCSRFToken(),  // ✅ Include CSRF token
+//           },
+//           body: JSON.stringify(formData),
+//       })
+//           .then((response) => response.json())
+//           .then((data) => {
+//               console.log("Response:", data);
+//               if (data.success) {
+//                   alert("Message sent successfully!");
+//                   contactForm.reset();
+//               } else {
+//                   alert("Error: " + data.error);
+//               }
+//           })
+//           .catch((error) => {
+//               console.error("Error:", error);
+//               alert("An error occurred. Please try again.");
+//           });
+//   });
+// });
+
+
+
+// business JS file 
+document.getElementById('contactUs').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const jsonData = {};
+
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
+    });
+
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const csrftoken = getCookie('csrftoken');
+
+    fetch('/api/business/contact/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken,
+        },
+        body: JSON.stringify(jsonData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Message sent successfully') {
+            alert(data.status);
+            document.getElementById('contactUs').reset();
+        } else if (data.status === 'error') {
+            alert("Error: " + JSON.stringify(data.errors));
+        } else {
+            alert("An unknown error occurred.");
+        }
+    })
+    .catch(error => {
+        console.error('Internal error:', error);
+        alert('An error occurred. Please try again.');
+    });
 });

@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ "localhost",
     "127.0.0.1",
-    "90c3-102-88-110-122.ngrok-free.app",
+    "192d-102-89-32-238.ngrok-free.app",
     ]
 
 
@@ -69,7 +69,7 @@ CORS_ALLOW_HEADERS = [
 # CSRF_TRUSTED_ORIGINS 
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
-    " https://90c3-102-88-110-122.ngrok-free.app"
+    "https://192d-102-89-32-238.ngrok-free.app"
 ]
 
 CSRF_COOKIE_SECURE = False  # Ensure it's False for local testing

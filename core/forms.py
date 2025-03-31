@@ -1,30 +1,22 @@
 from django import forms
 from django.forms import ModelForm
 # from django.core.exceptions import ValidationError
-from .models import GeneralContactMessage, GeneralSubmission
+from .models import GeneralContactMessage, BusinessContactMessage
 
 
-
-class generalContactForm(ModelForm):
-    class Meta:
-        model = GeneralContactMessage
-        fields = ('name', 'email', 'phone', 'message')
 
 
 # New general contact
 class GeneralForm(forms.ModelForm):
     class Meta:
-        model = GeneralSubmission
+        model = GeneralContactMessage
         fields = ['name', 'email', 'phone', 'message']
-        # widgets = {
-        #     'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Name'}),
-        #     'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Your Email'}),
-        #     'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Your Phone Number'}),
-        #     'message': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Your Message', 'rows': 5}),
-        # }
+   
     
-    
-    
+class BusinessContactForm(forms.ModelForm):
+    class Meta:
+        model = BusinessContactMessage
+        fields = ['name', 'email', 'phone', 'property_type', 'message']
     
     
     

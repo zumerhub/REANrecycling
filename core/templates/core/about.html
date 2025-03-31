@@ -261,7 +261,7 @@
  </section>
  
  <!-- Contact Modal -->
- <div class="modal fade" id="contact-us" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+ {% comment %} <div class="modal fade" id="contact-us" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered">
      <div class="modal-content">
        <div class="modal-header bg-solar-dark text-white">
@@ -269,7 +269,7 @@
          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
        </div>
        <div class="modal-body">
-        <form method="POST">
+        <form method="POST" id="contactUs">
           {% csrf_token %}
 
            <div class="mb-3">
@@ -285,8 +285,8 @@
              <input type="tel" class="form-control" name="phone" id="phone">
            </div>
            <div class="mb-3">
-             <label for="property" class="form-label">Property Type</label>
-             <select class="form-select" name="property" id="property" required>
+             <label for="property_type" class="form-label">Property Type</label>
+             <select class="form-select" name="property_type" id="property_type" required>
                <option value="" selected disabled>Please select</option>
                <option value="residential">Residential</option>
                <option value="commercial">Commercial</option>
@@ -303,7 +303,49 @@
        </div>
      </div>
    </div>
- </div>
+ </div> {% endcomment %}
  
+ <div class="modal fade" id="contact-us" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header bg-solar-dark text-white">
+              <h5 class="modal-title" id="contactModalLabel">Contact Rean Recycling</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form method="POST" id="contactUs">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Full Name</label>
+                      <input type="text" class="form-control" name="name" id="name" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="email" class="form-label">Email Address</label>
+                      <input type="email" class="form-control" name="email" id="email" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="phone" class="form-label">Phone Number</label>
+                      <input type="tel" class="form-control" name="phone" id="phone">
+                  </div>
+                  <div class="mb-3">
+                      <label for="property_type" class="form-label">Property Type</label>
+                      <select class="form-select" name="property_type" id="property_type" required>
+                          <option value="" selected disabled>Please select</option>
+                          <option value="residential">Residential</option>
+                          <option value="commercial">Commercial</option>
+                          <option value="farm">Farm/Agricultural</option>
+                          <option value="other">Other</option>
+                      </select>
+                  </div>
+                  <div class="mb-3">
+                      <label for="message" class="form-label">Your Message</label>
+                      <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-solar w-100">Send Message</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
 
 {% endblock content %}

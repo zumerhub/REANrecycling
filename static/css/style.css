@@ -5,3 +5,22 @@ body::before {
     height: 60px;
 }
 
+
+.notification {
+    position: fixed;
+    top: 150px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.notification.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.notification.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}

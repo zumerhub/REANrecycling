@@ -37,6 +37,38 @@
 //     }
 
 
+
+
+
+// // Navigation Menu Dropdown
+function showNotification(message, type) {
+    const notificationDiv = document.createElement('div');
+    notificationDiv.textContent = message;
+    notificationDiv.classList.add('notification', type); // Add classes for styling
+
+    // Add styles (you can customize these)
+    notificationDiv.style.position = 'fixed';
+    notificationDiv.style.top = '70px';
+    notificationDiv.style.right = '20px';
+    notificationDiv.style.padding = '15px';
+    notificationDiv.style.borderRadius = '5px';
+
+    if (type === 'success') {
+        notificationDiv.style.backgroundColor = '#d4edda';
+        notificationDiv.style.color = '#155724';
+    } else if (type === 'error') {
+        notificationDiv.style.backgroundColor = '#f8d7da';
+        notificationDiv.style.color = '#721c24';
+    }
+
+    document.body.appendChild(notificationDiv);
+
+    // Remove the notification after a few seconds
+    setTimeout(() => {
+        notificationDiv.remove();
+    }, 5000); // 5 seconds
+}
+
 // Contact Form Submission (using fetch API)
 document.getElementById('contactForm').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -76,19 +108,28 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     .then(response => response.json()) // Parse JSON response
     .then(data => {
         if (data.status === 'Message sent successfully') {
-            alert(data.status);
+            // alert(data.status);
+            showNotification("✅ Success: Your message has been sent!", "success");
             document.getElementById('contactForm').reset();
         } else if (data.status === 'error'){
-            alert("Error: " + JSON.stringify(data.errors));
+            // alert("Error: " + JSON.stringify(data.errors));
+            showNotification("❌ Error: " + (data.error || "Failed to send message. Please try again."), "error");
         } else {
-            alert("An unknown error occurred.");
+            // alert("An unknown error occurred.");
+            showNotification("⚠️ Error: A network error occurred. Please try again later.", "error");
+
         }
     })
     .catch(error => {
         console.error('There has been a problem with your fetch operation:', error);
-        alert('An error occurred. Please try again.');
+        // alert('An error occurred. Please try again.');
+        showNotification("⚠️ Error: A network error occurred. Please try again later.", "error");
+
     });
 });
+
+
+
 
 
 // document.addEventListener("DOMContentLoaded", function () {
